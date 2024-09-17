@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomePage Component Demo</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script>
+        // Polyfill for process.env
+        window.process = { env: { NODE_ENV: 'production' } };
+    </script>
+    <script src="http://localhost:5000/ui-components.umd.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .embed-container {
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .embed-header {
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin: -20px -20px 20px -20px;
+            border-bottom: 1px solid #ddd;
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="embed-container">
+        <div class="embed-header">Embedded HomePage Component</div>
+        <div id="root"></div>
+    </div>
+
+    <script>
+        console.log('UIComponents:', UIComponents);
+        if (typeof UIComponents === 'undefined' || typeof UIComponents.HomePage === 'undefined') {
+            console.error('UIComponents or HomePage is undefined. Check if the script is loaded correctly.');
+        } else {
+            const { HomePage } = UIComponents;
+            console.log('HomePage:', HomePage);
+            if (typeof HomePage === 'function') {
+                try {
+                    const element = React.createElement(HomePage);
+                    console.log('Created element:', element);
+                    ReactDOM.createRoot(document.getElementById('root')).render(element);
+                } catch (error) {
+                    console.error('Error creating or rendering HomePage:', error);
+                }
+            } else {
+                console.error('HomePage is not a function. Actual value:', HomePage);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,1 +1,4 @@
-export { HomePage } from './components/HomePage';
+import './styles/globals.css';
+import { HomePage } from './components/HomePage';
+
+export { HomePage };
