@@ -21,6 +21,6 @@
   },
   "scripts": {
     "build": "vite build --mode production",
-    "serve-demo": "serve dist -p 5000"
+    "serve-demo": "serve dist -p 5173"
   }
 }

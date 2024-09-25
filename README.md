@@ -3,16 +3,6 @@
 
 This project demonstrates a monorepo structure with a shared UI component library and a main web application.
 
-- [Project Structure](#project-structure)
-- [Prerequisites](#prerequisites)
-- [Setup](#setup)
-- [Running the Demo](#running-the-demo)
-- [Running the Main Web Application](#running-the-main-web-application)
-- [Developing Shared Components](#developing-shared-components)
-- [Running Everything Simultaneously](#running-everything-simultaneously)
-- [Continuous Development](#continuous-development)
-
-
 ## Project Structure
 
 - `demo/`: Contains a sample HTML file to demonstrate the usage of shared components
@@ -23,61 +13,45 @@ This project demonstrates a monorepo structure with a shared UI component librar
 
 - Node.js (v14 or later)
 - npm (v6 or later)
-- http-server (or any similar static file server)
 
 ## Setup
 
-1. Clone the repository:
+1. Clone the repository and install dependencies:
    ```
    git clone https://github.com/your-username/monorepo-demo.git
    cd monorepo-demo
-   ```
-
-2. Install dependencies:
-   ```
    npm install
    ```
 
-3. Install http-server globally (if not already installed):
-   ```
-   npm install -g http-server
-   ```
+## Running Everything Together
 
-## Running the Demo
+1. Open three terminal windows
 
-To run the demo sample app:
-
-1. Build the UI components:
+2. In the first terminal, build and serve the UI components:
    ```
    cd packages/ui
    npm run build
+   npm run serve-demo
    ```
 
-2. Serve the demo using http-server:
+3. In the second terminal, serve the demo:
    ```
-   cd ../../demo
-   http-server
+   cd demo
+   npx http-server -p 8080
    ```
 
-3. Open your browser and navigate to `http://localhost:8080`
-
-## Running the Main Web Application
-
-To run the main web application:
-
-1. Navigate to the webapp directory:
+4. In the third terminal, run the main web application:
    ```
    cd webapp
-   ```
-
-2. Start the development server:
-   ```
    npm run dev
    ```
 
-3. Open your browser and navigate to `http://localhost:3000`
+Now you can access:
+- The demo at `http://localhost:8080`
+- The main web application at `http://localhost:3000`
+- The shared components at `http://localhost:5173`
 
-## Developing Shared Components
+## Rebuilding Shared Components
 
 When making changes to the shared UI components:
 
@@ -93,46 +67,13 @@ When making changes to the shared UI components:
    npm run build
    ```
 
-4. To see your changes in the demo, restart the http-server in the demo directory
+4. The changes will be reflected in both the demo and the main web application
 
-5. To see your changes in the main web application, restart the development server in the webapp directory
+For continuous development, you can use the watch mode:
 
-## Running Everything Simultaneously
+```
+cd packages/ui
+npm run build -- --watch
+```
 
-To run both the demo and the main web application simultaneously:
-
-1. Open three terminal windows
-
-2. In the first terminal, navigate to the UI package and build it:
-   ```
-   cd packages/ui
-   npm run build
-   ```
-
-3. In the second terminal, serve the demo:
-   ```
-   cd demo
-   http-server
-   ```
-
-4. In the third terminal, run the main web application:
-   ```
-   cd webapp
-   npm run dev
-   ```
-
-Now you can access the demo at `http://localhost:8080` and the main web application at `http://localhost:3000`.
-
-## Continuous Development
-
-For continuous development of shared components:
-
-1. In one terminal, watch for changes in the UI package:
-   ```
-   cd packages/ui
-   npm run build -- --watch
-   ```
-
-2. In another terminal, run the demo or the main web application as described above
-
-This setup will automatically rebuild the UI package whenever you make changes to the shared components.
+This will automatically rebuild the UI package whenever you make changes to the shared components.
